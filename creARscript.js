@@ -13,6 +13,8 @@ function selectColor(el){
     color = window.getComputedStyle(el).backgroundColor;
 }
 
+  
+
 // Keep everything in anonymous function, called on window load.
 
 if(window.addEventListener) {
@@ -58,7 +60,6 @@ window.addEventListener('load', function () {
     
 
     context = canvas.getContext('2d');
-    
     for(i=0; i<=canvas.width; i=i+250)
     {
     	context.moveTo(i,0);
@@ -73,10 +74,9 @@ window.addEventListener('load', function () {
     	context.strokeStyle = "#E0E0E0";
     	context.stroke();
     }
-    
-
+	history.saveState(canvas);
     // Get the tool select input.
-    tool = new tools["pencil"]();
+    tool = new tools["pencil"](canvas);
 
     // Attach the mousedown, mousemove and mouseup event listeners.
     canvas.addEventListener('mousedown', ev_canvas, false);
@@ -117,12 +117,55 @@ window.addEventListener('load', function () {
   // This object holds the implementation of each drawing tool.
   var tools = {};
 
+ var history = {
+    listyforpoints: [],
+    saveState: function() {
+      this.listyforpoints.push(canvas.toDataURL());
+      },
+    undo: function(){
+    	if (this.listyforpoints.length > 1){
+      		this.listyforpoints.pop();
+      		var last_element = this.listyforpoints[this.listyforpoints.length - 1];
+      		contexto.clearRect(0, 0, canvas.width, canvas.height);
+      		var img = new Image;
+      		img.onload = function(){
+  				contexto.drawImage(img,0,0);
+			};
+			img.src = last_element;
+		};
+    },
+    clear:function(){
+    	if (this.listyforpoints.length > 1){
+      		this.listyforpoints.pop();
+      		var last_element = this.listyforpoints[0];
+      		contexto.clearRect(0, 0, canvas.width, canvas.height);
+      		var img = new Image;
+      		img.onload = function(){
+  				contexto.drawImage(img,0,0);
+			};
+			img.src = last_element;
+		};
+    },
+    };
+    
+   $('#undo').bind('click', function() {
+    history.undo();
+  });
+  
+     $('#clear').bind('click', function() {
+		var truefalse = prompt("Are you sure you want to clear your work? Cannot be undone.", "Yes/No");
+		if (truefalse == "Yes"){
+			history.clear();
+			}
+  });
 
   // The drawing pencil.
-  tools.pencil = function () {
+  tools.pencil = function (canvas) {
     var tool = this;
     this.started = false;
 
+	
+	
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
@@ -139,6 +182,7 @@ window.addEventListener('load', function () {
         context.lineTo(ev._x, ev._y);
         context.strokeStyle = color;
         context.stroke();
+
       }
     };
 
@@ -147,13 +191,16 @@ window.addEventListener('load', function () {
       if (tool.started) {
         tool.mousemove(ev);
         tool.started = false;
+        history.saveState();
         img_update();
       }
     };
   };
-
+  
+	
   init();
-
+  
+  
 }, false); }
 
 

@@ -10,11 +10,10 @@
     	</p>
         <div id="container">
             <canvas id="imageView" width="1250" height="750" ></canvas>
-            <div id="controllers">
-  				<span class="controller" id="undo">Undo</span>  
-  				<span class="controller" id="redo">Redo</span>
-  				<span class="controller" id="redo">Clear</span>
-  			</div>
+           <div id="controllers">
+  			<span class="controller" id="undo">Undo</span>  
+  			<span class="controller" id="clear">Clear</span>
+		</div>
               <div footer>
 			<div class="palette-case">
 					<div class="palette black" onclick="selectColor(this)" style="background-color: rgb(0,0,0); border-style: solid;"></div>
@@ -32,6 +31,7 @@
     	</div>
             </canvas>
         </div>
+        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="creARscript.js"></script>
     </body>
 </html>
