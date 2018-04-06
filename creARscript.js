@@ -158,13 +158,14 @@ window.addEventListener('load', function () {
 			history.clear();
 			}
   });
-
+        
   // The drawing pencil.
-  tools.pencil = function (canvas) {
+  tools.pencil = function () {
     var tool = this;
     this.started = false;
+	this.paths = [];
+	this.canvas = canvas;
 
-	
 	
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
@@ -172,6 +173,7 @@ window.addEventListener('load', function () {
         context.beginPath();
         context.moveTo(ev._x, ev._y);
         tool.started = true;
+        //tool.mousemove(ev);
     };
 
     // This function is called every time you move the mouse. Obviously, it only 
@@ -179,13 +181,21 @@ window.addEventListener('load', function () {
     // the mouse button).
     this.mousemove = function (ev) {
       if (tool.started) {
+        //this.paths[this.paths.length - 1].push(this.mousePosition(e));
         context.lineTo(ev._x, ev._y);
+    	//var output = document.getElementById('output2');
+        //output.innerHTML = this.mousePosition(ev);
         context.strokeStyle = color;
         context.stroke();
-
       }
     };
-
+    
+	this.mousePosition = function(ev) {
+        var rect = this.canvas.getBoundingClientRect();
+        return [(ev.clientX - rect.left) / this.canvas.offsetWidth,
+            (ev.clientY - rect.top) / this.canvas.offsetHeight];
+    };
+    
     // This is called when you release the mouse button.
     this.mouseup = function (ev) {
       if (tool.started) {
