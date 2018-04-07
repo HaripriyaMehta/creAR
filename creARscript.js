@@ -60,20 +60,7 @@ window.addEventListener('load', function () {
     
 
     context = canvas.getContext('2d');
-    for(i=0; i<=canvas.width; i=i+250)
-    {
-    	context.moveTo(i,0);
-    	context.lineTo(i,canvas.height);
-    	context.stroke();
-    }
-
-	for(i=0; i<=canvas.height; i=i+250)
-    {
-    	context.moveTo(0,i);
-    	context.lineTo(canvas.width,i);
-    	context.strokeStyle = "#E0E0E0";
-    	context.stroke();
-    }
+   
 	history.saveState(canvas);
     // Get the tool select input.
     tool = new tools["pencil"](canvas);
@@ -120,18 +107,18 @@ window.addEventListener('load', function () {
  var history = {
     listyforpoints: [],
     saveState: function() {
-      this.listyforpoints.push(canvas.toDataURL());
+      var imageshot = contexto.getImageData(0, 0, canvas.width, canvas.height);
+      this.listyforpoints.push(imageshot);
       },
     undo: function(){
     	if (this.listyforpoints.length > 1){
-      		this.listyforpoints.pop();
-      		var last_element = this.listyforpoints[this.listyforpoints.length - 1];
+      		//this.listyforpoints.pop();
       		contexto.clearRect(0, 0, canvas.width, canvas.height);
-      		var img = new Image;
-      		img.onload = function(){
-  				contexto.drawImage(img,0,0);
-			};
-			img.src = last_element;
+      		var i;
+      		for (i = 0; i < this.listyforpoints.length; i++) { 
+    			contexto.putImageData(this.listyforpoints[i], 0, 0);
+			}
+			this.listyforpoints.pop();
 		};
     },
     clear:function(){
