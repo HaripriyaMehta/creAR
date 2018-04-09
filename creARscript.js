@@ -2,6 +2,7 @@
  * http://www.robodesign.ro
  */
 
+var paths = [[]];
 var color = "rgb(0, 0, 0)";
 function selectColor(el){
     for(var i=0;i<document.getElementsByClassName("palette").length;i++){
@@ -88,8 +89,6 @@ window.addEventListener('load', function () {
       func(ev);
     }
   }
-
-  // The event handler for any changes made to the tool selector.
     
 	
 
@@ -133,8 +132,22 @@ window.addEventListener('load', function () {
 			img.src = last_element;
 		};
     },
+    savepath:function(){
+    	if (this.listyforpoints.length > 1){
+      		this.listyforpoints.pop();
+      		var last_element = this.listyforpoints[0];
+      		contexto.clearRect(0, 0, canvas.width, canvas.height);
+      		var img = new Image;
+      		img.onload = function(){
+  				contexto.drawImage(img,0,0);
+			};
+			img.src = last_element;
+		};
+		alert(paths);
+    },
     };
     
+
    $('#undo').bind('click', function() {
     history.undo();
   });
@@ -146,12 +159,13 @@ window.addEventListener('load', function () {
 			}
   });
         
+     $('#save').bind('click', function() {
+		history.savepath();
+  });
   // The drawing pencil.
-  tools.pencil = function () {
+tools.pencil = function () {
     var tool = this;
     this.started = false;
-	this.paths = [];
-	this.canvas = canvas;
 
 	
     // This is called when you start holding down the mouse button.
@@ -160,7 +174,7 @@ window.addEventListener('load', function () {
         context.beginPath();
         context.moveTo(ev._x, ev._y);
         tool.started = true;
-        //tool.mousemove(ev);
+        tool.mousemove(ev);
     };
 
     // This function is called every time you move the mouse. Obviously, it only 
@@ -168,19 +182,20 @@ window.addEventListener('load', function () {
     // the mouse button).
     this.mousemove = function (ev) {
       if (tool.started) {
-        //this.paths[this.paths.length - 1].push(this.mousePosition(e));
         context.lineTo(ev._x, ev._y);
     	//var output = document.getElementById('output2');
-        //output.innerHTML = this.mousePosition(ev);
+        //output.innerHTML = mousePosition(ev);
+        paths.push(mousePosition(ev));
+        
         context.strokeStyle = color;
         context.stroke();
       }
     };
     
-	this.mousePosition = function(ev) {
-        var rect = this.canvas.getBoundingClientRect();
-        return [(ev.clientX - rect.left) / this.canvas.offsetWidth,
-            (ev.clientY - rect.top) / this.canvas.offsetHeight];
+	var mousePosition = function(ev) {
+        var rect = canvas.getBoundingClientRect();
+        return [(ev.clientX - rect.left) / canvas.offsetWidth,
+            (ev.clientY - rect.top) / canvas.offsetHeight];
     };
     
     // This is called when you release the mouse button.
