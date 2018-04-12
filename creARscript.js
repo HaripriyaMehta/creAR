@@ -14,6 +14,23 @@ function selectColor(el){
     color = window.getComputedStyle(el).backgroundColor;
 }
 
+
+//This function creates and automatically downloads the CSV, 
+//given an array paths of points.
+function createCSV(paths) {
+  //var content = "data:text/csv;charset=utf-8,";
+  var content = "";
+  paths.forEach(function(point, index) {
+    content += point.join(",") + "\n";
+  });
+  //return encodeURI(content);
+  var a         = document.createElement('a');
+  a.href        = 'data:attachment/csv,' +  encodeURI(content);
+  a.target      = '_blank';
+  a.download    = 'myFile.csv';
+  document.body.appendChild(a);
+  a.click();
+}
   
 
 // Keep everything in anonymous function, called on window load.
@@ -130,6 +147,7 @@ window.addEventListener('load', function () {
   				contexto.drawImage(img,0,0);
 			};
 			img.src = last_element;
+      this.listyforpoints = []
 		};
     },
     savepath:function(){
@@ -143,7 +161,8 @@ window.addEventListener('load', function () {
 			};
 			img.src = last_element;
 		};
-		alert(paths);
+    //console.log(paths);
+		//alert(paths);
     },
     };
     
@@ -161,6 +180,9 @@ window.addEventListener('load', function () {
         
      $('#save').bind('click', function() {
 		history.savepath();
+    createCSV(paths); //lily - added to create + download the CSV (see function)
+    history.clear(); //lily - added to clear the work
+
   });
   // The drawing pencil.
 tools.pencil = function () {
