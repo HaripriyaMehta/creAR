@@ -210,7 +210,6 @@ window.addEventListener('load', function () {
         
      $('#save').bind('click', function() {
 		history.savepath();
-    history.clear();
   });
 
   // The drawing pencil.
