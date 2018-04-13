@@ -18,7 +18,7 @@ function selectColor(el){
 
 //This function creates and automatically downloads the CSV, 
 //given an array paths of points.
-function createCSV(paths,listyforpointsdata,text) {
+function createCSV(paths,dataURL,text) {
   //var content = "data:text/csv;charset=utf-8,";
   var content = "";
   console.log("in the createCSV function");
@@ -35,13 +35,13 @@ function createCSV(paths,listyforpointsdata,text) {
 
   //check size of imagedata
 
-  var listyforpointsJoin = listyforpointsdata.join();
-  listyforpointsJoin = "[" + listyforpointsJoin + "]";
-  console.log(listyforpointsJoin)
+  //var listyforpointsJoin = listyforpointsdata.join();
+  //listyforpointsJoin = "[" + listyforpointsJoin + "]";
+  //console.log(listyforpointsJoin)
 
   console.log(text);
 
-  content = pathsJoin + "\n" + listyforpointsJoin + "\n" + text;
+  content = pathsJoin + "\n" + dataURL + "\n" + text;
   //console.log(content);
 
   //paths.forEach(function(point, index) {
@@ -155,6 +155,7 @@ window.addEventListener('load', function () {
       statetopath[this.counter] = storepaths;
       this.counter = this.counter + 1;
       statetopath[0]  = [];
+      //alert(this.listyforpoints);
       },
     undo: function(){
     	if (this.listyforpoints.length > 1){
@@ -201,7 +202,8 @@ window.addEventListener('load', function () {
     	if (text == ""){
     		alert("What have you drawn? Type something in the textbox");
     	} else{
-    		createCSV(paths,this.listyforpoints[0].data,text);
+    	    var dataURL = canvas.toDataURL();
+    		createCSV(paths,dataURL,text);
     		history.clear();
     		document.getElementById('output2').value = "";
     	}
