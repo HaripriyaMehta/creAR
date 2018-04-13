@@ -18,12 +18,12 @@ function selectColor(el){
 
 //This function creates and automatically downloads the CSV, 
 //given an array paths of points.
-function createCSV(paths,listyforpointsdata) {
+function createCSV(paths,listyforpointsdata,text) {
   //var content = "data:text/csv;charset=utf-8,";
   var content = "";
   console.log("in the createCSV function");
-  console.log([paths]);
-  console.log(listyforpointsdata)
+  //console.log([paths]);
+  //console.log(listyforpointsdata)
 
   var pathsJoin = '';
   paths.forEach(function(row, index){
@@ -39,8 +39,10 @@ function createCSV(paths,listyforpointsdata) {
   listyforpointsJoin = "[" + listyforpointsJoin + "]";
   console.log(listyforpointsJoin)
 
-  content = pathsJoin + "\n" + listyforpointsJoin;
-  console.log(content);
+  console.log(text);
+
+  content = pathsJoin + "\n" + listyforpointsJoin + "\n" + text;
+  //console.log(content);
 
   //paths.forEach(function(point, index) {
   //  content += point.join(",") + "\n";
@@ -199,7 +201,7 @@ window.addEventListener('load', function () {
     	if (text == ""){
     		alert("What have you drawn? Type something in the textbox");
     	} else{
-    		createCSV(paths,this.listyforpoints[0].data);
+    		createCSV(paths,this.listyforpoints[0].data,text);
     		history.clear();
     		document.getElementById('output2').value = "";
     	}
