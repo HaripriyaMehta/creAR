@@ -39,7 +39,7 @@ function createCSV(paths,listyforpointsdata) {
   listyforpointsJoin = "[" + listyforpointsJoin + "]";
   console.log(listyforpointsJoin)
 
-  content = pathsJoin + "," + listyforpointsJoin;
+  content = pathsJoin + "\n" + listyforpointsJoin;
   console.log(content);
 
   //paths.forEach(function(point, index) {
@@ -51,7 +51,7 @@ function createCSV(paths,listyforpointsdata) {
   //a.href        = 'data:attachment/csv,' +  encodeURI(content);
   a.href        = 'data:attachment/csv,' +  content;
   a.target      = '_blank';
-  a.download    = 'data.csv';
+  a.download    = 'data.txt';
   document.body.appendChild(a);
   a.click();
 }
