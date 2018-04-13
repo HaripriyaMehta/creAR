@@ -17,7 +17,7 @@ function selectColor(el){
 }
 
 //This function creates and automatically downloads the CSV, 
-//given an array paths of points.
+//given an array paths, imagedata, and classification.
 function createCSV(paths,listyforpointsdata) {
   //var content = "data:text/csv;charset=utf-8,";
   var content = "";
@@ -25,13 +25,22 @@ function createCSV(paths,listyforpointsdata) {
   console.log([paths]);
   console.log(listyforpointsdata)
 
-  pathsJoin = paths.toString();
+  var pathsJoin = '';
+  paths.forEach(function(row, index){
+    pathsJoin += "[" + row.toString()  + "],";
+  });
+  pathsJoin = pathsJoin.slice(0,-1);
+  pathsJoin = "[[" + pathsJoin + "]]"
   console.log(pathsJoin);
-  listyforpointsJoin = listyforpointsdata.join();
+
+  //check size of imagedata
+
+  var listyforpointsJoin = listyforpointsdata.join();
+  listyforpointsJoin = "[" + listyforpointsJoin + "]";
   console.log(listyforpointsJoin)
-  csv = [pathsJoin,listyforpointsJoin];
-  console.log(csv);
-  content = csv.join(",");
+
+  content = pathsJoin + "," + listyforpointsJoin;
+  console.log(content);
 
   //paths.forEach(function(point, index) {
   //  content += point.join(",") + "\n";
@@ -39,7 +48,8 @@ function createCSV(paths,listyforpointsdata) {
 
   //return encodeURI(content);
   var a         = document.createElement('a');
-  a.href        = 'data:attachment/csv,' +  encodeURI(content);
+  //a.href        = 'data:attachment/csv,' +  encodeURI(content);
+  a.href        = 'data:attachment/csv,' +  content;
   a.target      = '_blank';
   a.download    = 'data.csv';
   document.body.appendChild(a);
@@ -196,7 +206,7 @@ window.addEventListener('load', function () {
 			};
 			img.src = last_element;
 		};
-		alert(paths);
+		//alert(paths);
     //console.log(paths);
     //console.log(this.listyforpoints[0].data);
     createCSV(paths,this.listyforpoints[0].data);
