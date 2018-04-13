@@ -147,7 +147,6 @@ window.addEventListener('load', function () {
     undo: function(){
     	if (this.listyforpoints.length > 1){
       		contexto.clearRect(0, 0, canvas.width, canvas.height);
-      		alert(paths);
       		var i;
       		for (i = 0; i < this.listyforpoints.length; i++) { 
     			contexto.putImageData(this.listyforpoints[i], 0, 0);
@@ -188,12 +187,12 @@ window.addEventListener('load', function () {
     savepath:function(){
     	var text =  document.getElementById('output2').value;
     	if (text == ""){
-    		alert(" What have you drawn? Type something in the textbox");
-    	}else{
+    		alert("What have you drawn? Type something in the textbox");
+    	} else{
     		createCSV(paths,this.listyforpoints[0].data);
     		history.clear();
     		document.getElementById('output2').value = "";
-    	};
+    	}
     },
     };
     
