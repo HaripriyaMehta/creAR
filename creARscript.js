@@ -2,7 +2,9 @@
  * http://www.robodesign.ro
  */
 
-var paths = [[]];
+var paths = [];
+var storepaths = [];
+var statetopath = {};
 var color = "rgb(0, 0, 0)";
 function selectColor(el){
     for(var i=0;i<document.getElementsByClassName("palette").length;i++){
@@ -14,23 +16,6 @@ function selectColor(el){
     color = window.getComputedStyle(el).backgroundColor;
 }
 
-
-//This function creates and automatically downloads the CSV, 
-//given an array paths of points.
-function createCSV(paths) {
-  //var content = "data:text/csv;charset=utf-8,";
-  var content = "";
-  paths.forEach(function(point, index) {
-    content += point.join(",") + "\n";
-  });
-  //return encodeURI(content);
-  var a         = document.createElement('a');
-  a.href        = 'data:attachment/csv,' +  encodeURI(content);
-  a.target      = '_blank';
-  a.download    = 'myFile.csv';
-  document.body.appendChild(a);
-  a.click();
-}
   
 
 // Keep everything in anonymous function, called on window load.
@@ -122,17 +107,34 @@ window.addEventListener('load', function () {
 
  var history = {
     listyforpoints: [],
+    counter: 0,
     saveState: function() {
       var imageshot = contexto.getImageData(0, 0, canvas.width, canvas.height);
       this.listyforpoints.push(imageshot);
+      statetopath[this.counter] = storepaths;
+      this.counter = this.counter + 1;
+      statetopath[0]  = [];
       },
     undo: function(){
     	if (this.listyforpoints.length > 1){
-      		//this.listyforpoints.pop();
       		contexto.clearRect(0, 0, canvas.width, canvas.height);
+      		alert(paths);
       		var i;
       		for (i = 0; i < this.listyforpoints.length; i++) { 
     			contexto.putImageData(this.listyforpoints[i], 0, 0);
+			}
+			removepath = statetopath[this.counter-1][0];
+			i = paths.toString().indexOf(removepath.toString());
+			if (i == 0){
+				paths = [];
+			}
+			else{
+				paths2=paths.toString().slice(0, i-1);
+				paths2 = paths2.split(",");
+				paths = [];
+				for (var i = 0; i < paths2.length-1; i+=2) {
+					paths.push([paths2[i], paths2[i+1]]);
+			}
 			}
 			this.listyforpoints.pop();
 		};
@@ -147,7 +149,11 @@ window.addEventListener('load', function () {
   				contexto.drawImage(img,0,0);
 			};
 			img.src = last_element;
-      this.listyforpoints = []
+			this.listyforpoints = [];
+			this.counter = 0;
+			statetopath = {};
+			storepaths = [];
+			paths = [];
 		};
     },
     savepath:function(){
@@ -161,8 +167,7 @@ window.addEventListener('load', function () {
 			};
 			img.src = last_element;
 		};
-    //console.log(paths);
-		//alert(paths);
+		alert(paths);
     },
     };
     
@@ -180,14 +185,12 @@ window.addEventListener('load', function () {
         
      $('#save').bind('click', function() {
 		history.savepath();
-    createCSV(paths); //lily - added to create + download the CSV (see function)
-    history.clear(); //lily - added to clear the work
-
   });
   // The drawing pencil.
 tools.pencil = function () {
     var tool = this;
     this.started = false;
+    this.storepaths = []
 
 	
     // This is called when you start holding down the mouse button.
@@ -208,7 +211,7 @@ tools.pencil = function () {
     	//var output = document.getElementById('output2');
         //output.innerHTML = mousePosition(ev);
         paths.push(mousePosition(ev));
-        
+        storepaths.push(mousePosition(ev));
         context.strokeStyle = color;
         context.stroke();
       }
@@ -226,6 +229,7 @@ tools.pencil = function () {
         tool.mousemove(ev);
         tool.started = false;
         history.saveState();
+        storepaths = [];
         img_update();
       }
     };
