@@ -25,13 +25,22 @@ function createCSV(paths,listyforpointsdata) {
   console.log([paths]);
   console.log(listyforpointsdata)
 
-  pathsJoin = paths.toString();
+  var pathsJoin = '';
+  paths.forEach(function(row, index){
+    pathsJoin += "[" + row.toString()  + "],";
+  });
+  pathsJoin = pathsJoin.slice(0,-1);
+  pathsJoin = "[[" + pathsJoin + "]]"
   console.log(pathsJoin);
-  listyforpointsJoin = listyforpointsdata.join();
+
+  //check size of imagedata
+
+  var listyforpointsJoin = listyforpointsdata.join();
+  listyforpointsJoin = "[" + listyforpointsJoin + "]";
   console.log(listyforpointsJoin)
-  csv = [pathsJoin,listyforpointsJoin];
-  console.log(csv);
-  content = csv.join(",");
+
+  content = pathsJoin + "," + listyforpointsJoin;
+  console.log(content);
 
   //paths.forEach(function(point, index) {
   //  content += point.join(",") + "\n";
@@ -39,7 +48,8 @@ function createCSV(paths,listyforpointsdata) {
 
   //return encodeURI(content);
   var a         = document.createElement('a');
-  a.href        = 'data:attachment/csv,' +  encodeURI(content);
+  //a.href        = 'data:attachment/csv,' +  encodeURI(content);
+  a.href        = 'data:attachment/csv,' +  content;
   a.target      = '_blank';
   a.download    = 'data.csv';
   document.body.appendChild(a);
