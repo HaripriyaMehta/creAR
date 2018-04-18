@@ -113,6 +113,9 @@ window.addEventListener('load', function () {
     canvas.addEventListener('mousedown', ev_canvas, false);
     canvas.addEventListener('mousemove', ev_canvas, false);
     canvas.addEventListener('mouseup',   ev_canvas, false);
+    canvas.addEventListener('touchstart', ev_canvas, false);
+    canvas.addEventListener('touchmove', ev_canvas, false);
+    canvas.addEventListener('touchend',   ev_canvas, false);
   }
 
   // The general-purpose event handler. This function just determines the mouse 
@@ -203,8 +206,8 @@ window.addEventListener('load', function () {
     		alert("What have you drawn? Type something in the textbox");
     	} else{
     	    var dataURL = canvas.toDataURL();
+    	    history.clear();
     		createCSV(paths,dataURL,text);
-    		history.clear();
     		document.getElementById('output2').value = "";
     	}
     },
@@ -231,11 +234,17 @@ tools.pencil = function () {
     var tool = this;
     this.started = false;
     this.storepaths = []
-
 	
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
+        context.beginPath();
+        context.moveTo(ev._x, ev._y);
+        tool.started = true;
+        tool.mousemove(ev);
+    };
+    
+    this.touchstart = function (ev) {
         context.beginPath();
         context.moveTo(ev._x, ev._y);
         tool.started = true;
@@ -257,10 +266,29 @@ tools.pencil = function () {
       }
     };
     
+    this.touchmove = function (ev) {
+      if (tool.started) {
+        context.lineTo(ev._x, ev._y);
+    	//var output = document.getElementById('output2');
+        //output.innerHTML = mousePosition(ev);
+        paths.push(touchPosition(ev));
+        storepaths.push(touchPosition(ev));
+        context.strokeStyle = color;
+        context.stroke();
+      }
+    };
+        
 	var mousePosition = function(ev) {
         var rect = canvas.getBoundingClientRect();
         return [(ev.clientX - rect.left) / canvas.offsetWidth,
             (ev.clientY - rect.top) / canvas.offsetHeight];
+    };
+    
+    var touchPosition = function(ev) {
+        var rect = canvas.getBoundingClientRect();
+        var touch = ev.changedTouches[0];
+        return [(touch.clientX - rect.left) / canvas.offsetWidth,
+            (touch.clientY - rect.top) / canvas.offsetHeight];
     };
     
     // This is called when you release the mouse button.
@@ -273,6 +301,17 @@ tools.pencil = function () {
         img_update();
       }
     };
+    
+    this.touchend = function (ev) {
+      if (tool.started) {
+        tool.touchmove(ev);
+        tool.started = false;
+        history.saveState();
+        storepaths = [];
+        img_update();
+      }
+    };
+    
   };
   
 	
