@@ -206,9 +206,9 @@ window.addEventListener('load', function () {
     		alert("What have you drawn? Type something in the textbox");
     	} else{
     	    var dataURL = canvas.toDataURL();
-    	    history.clear();
     		createCSV(paths,dataURL,text);
     		document.getElementById('output2').value = "";
+    		history.clear();
     	}
     },
     };
