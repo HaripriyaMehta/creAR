@@ -53,7 +53,7 @@ function createCSV(paths,dataURL,text) {
   //a.href        = 'data:attachment/csv,' +  encodeURI(content);
   a.href        = 'data:attachment/csv,' +  content;
   a.target      = '_blank';
-  a.download    = 'data.txt';
+  a.download    = text + ".txt";
   document.body.appendChild(a);
   a.click();
 }
@@ -105,7 +105,7 @@ window.addEventListener('load', function () {
 
     context = canvas.getContext('2d');
    
-  history.saveState(canvas);
+	history.saveState(canvas);
     // Get the tool select input.
     tool = new tools["pencil"](canvas);
 
@@ -136,14 +136,14 @@ window.addEventListener('load', function () {
     }
   }
     
-  
+	
 
   // This function draws the #imageTemp canvas on top of #imageView, after which 
   // #imageTemp is cleared. This function is called each time when the user 
   // completes a drawing operation.
   function img_update () {
-    contexto.drawImage(canvas, 0, 0);
-    context.clearRect(0, 0, canvas.width, canvas.height);
+		contexto.drawImage(canvas, 0, 0);
+		context.clearRect(0, 0, canvas.width, canvas.height);
   }
 
   // This object holds the implementation of each drawing tool.
@@ -161,55 +161,57 @@ window.addEventListener('load', function () {
       //alert(this.listyforpoints);
       },
     undo: function(){
-      if (this.listyforpoints.length > 1){
-          contexto.clearRect(0, 0, canvas.width, canvas.height);
-          var i;
-          for (i = 0; i < this.listyforpoints.length; i++) { 
-          contexto.putImageData(this.listyforpoints[i], 0, 0);
-      }
-      removepath = statetopath[this.counter-1][0];
-      i = paths.toString().indexOf(removepath.toString());
-      if (i == 0){
-        paths = [];
-      }
-      else{
-        paths2=paths.toString().slice(0, i-1);
-        paths2 = paths2.split(",");
-        paths = [];
-        for (var i = 0; i < paths2.length-1; i+=2) {
-          paths.push([paths2[i], paths2[i+1]]);
-      }
-      }
-      this.listyforpoints.pop();
-    };
+    	if (this.listyforpoints.length > 1){
+      		contexto.clearRect(0, 0, canvas.width, canvas.height);
+      		var i;
+      		for (i = 0; i < this.listyforpoints.length; i++) { 
+    			contexto.putImageData(this.listyforpoints[i], 0, 0);
+			}
+			removepath = statetopath[this.counter-1][0];
+			i = paths.toString().indexOf(removepath.toString());
+			if (i == 0){
+				paths = [];
+			}
+			else{
+				paths2=paths.toString().slice(0, i-1);
+				paths2 = paths2.split(",");
+				paths = [];
+				for (var i = 0; i < paths2.length-1; i+=2) {
+					paths.push([paths2[i], paths2[i+1]]);
+			}
+			}
+			this.listyforpoints.pop();
+		};
     },
     clear:function(){
-      if (this.listyforpoints.length > 1){
-          this.listyforpoints.pop();
-          var last_element = this.listyforpoints[0];
-          contexto.clearRect(0, 0, canvas.width, canvas.height);
-          var img = new Image;
-          img.onload = function(){
-          contexto.drawImage(img,0,0);
-      };
-      img.src = last_element;
-      this.listyforpoints = [];
-      this.counter = 0;
-      statetopath = {};
-      storepaths = [];
-      paths = [];
-    };
+    	if (this.listyforpoints.length > 1){
+      		this.listyforpoints.pop();
+      		var last_element = this.listyforpoints[0];
+      		contexto.clearRect(0, 0, canvas.width, canvas.height);
+      		var img = new Image;
+      		img.onload = function(){
+  				contexto.drawImage(img,0,0);
+			};
+			img.src = last_element;
+			this.listyforpoints = [];
+			this.counter = 0;
+			statetopath = {};
+			storepaths = [];
+			paths = [];
+		};
     },
+    
+    
     savepath:function(){
-      var text =  document.getElementById('output2').value;
-      if (text == ""){
-        alert("What have you drawn? Type something in the textbox");
-      } else{
-          var dataURL = canvas.toDataURL();
-        createCSV(paths,dataURL,text);
-        document.getElementById('output2').value = "";
-        history.clear();
-      }
+    	var text =  document.getElementById('output2').value;
+    	if (text == ""){
+    		alert("What have you drawn? Type something in the textbox");
+    	} else{
+    	    var dataURL = canvas.toDataURL();
+    	    history.clear();
+    		createCSV(paths,dataURL,text);
+    		document.getElementById('output2').value = "";
+    	}
     },
     };
     
@@ -219,14 +221,14 @@ window.addEventListener('load', function () {
   });
   
      $('#clear').bind('click', function() {
-    var truefalse = prompt("Are you sure you want to clear your work? Cannot be undone.", "Yes/No");
-    if (truefalse == "Yes"){
-      history.clear();
-      }
+		var truefalse = prompt("Are you sure you want to clear your work? Cannot be undone.", "Yes/No");
+		if (truefalse == "Yes"){
+			history.clear();
+			}
   });
         
      $('#save').bind('click', function() {
-    history.savepath();
+		history.savepath();
   });
 
   // The drawing pencil.
@@ -234,7 +236,7 @@ tools.pencil = function () {
     var tool = this;
     this.started = false;
     this.storepaths = []
-  
+	
     // This is called when you start holding down the mouse button.
     // This starts the pencil drawing.
     this.mousedown = function (ev) {
@@ -246,10 +248,9 @@ tools.pencil = function () {
     
     this.touchstart = function (ev) {
         context.beginPath();
-        var touches = ev.changedTouches;
-        context.lineTo(touches[0].pageX, touches[0].pageY-120);
+        context.moveTo(ev._x, ev._y);
         tool.started = true;
-        tool.touchmove(ev);
+        tool.mousemove(ev);
     };
 
     // This function is called every time you move the mouse. Obviously, it only 
@@ -258,7 +259,7 @@ tools.pencil = function () {
     this.mousemove = function (ev) {
       if (tool.started) {
         context.lineTo(ev._x, ev._y);
-      //var output = document.getElementById('output2');
+    	//var output = document.getElementById('output2');
         //output.innerHTML = mousePosition(ev);
         paths.push(mousePosition(ev));
         storepaths.push(mousePosition(ev));
@@ -269,11 +270,9 @@ tools.pencil = function () {
     
     this.touchmove = function (ev) {
       if (tool.started) {
-        //context.lineTo(ev._x, ev._y);
-      //var output = document.getElementById('output2');
+        context.lineTo(ev._x, ev._y);
+    	//var output = document.getElementById('output2');
         //output.innerHTML = mousePosition(ev);
-        var touches = ev.changedTouches;
-        context.lineTo(touches[0].pageX, touches[0].pageY-120);
         paths.push(touchPosition(ev));
         storepaths.push(touchPosition(ev));
         context.strokeStyle = color;
@@ -281,7 +280,7 @@ tools.pencil = function () {
       }
     };
         
-  var mousePosition = function(ev) {
+	var mousePosition = function(ev) {
         var rect = canvas.getBoundingClientRect();
         return [(ev.clientX - rect.left) / canvas.offsetWidth,
             (ev.clientY - rect.top) / canvas.offsetHeight];
@@ -317,7 +316,7 @@ tools.pencil = function () {
     
   };
   
-  
+	
   init();
   
   
