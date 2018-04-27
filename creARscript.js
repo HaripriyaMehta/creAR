@@ -116,9 +116,8 @@ window.addEventListener('load', function () {
       statetopath[0]  = [];
       },
     undo: function(){
-    	if (this.listyforpoints.length > 1){
+    	if (this.listyforpoints.length > 0){
       		contexto.clearRect(0, 0, canvas.width, canvas.height);
-      		alert(paths);
       		var i;
       		for (i = 0; i < this.listyforpoints.length; i++) { 
     			contexto.putImageData(this.listyforpoints[i], 0, 0);
@@ -156,18 +155,8 @@ window.addEventListener('load', function () {
 			paths = [];
 		};
     },
-    savepath:function(){
-    	if (this.listyforpoints.length > 1){
-      		this.listyforpoints.pop();
-      		var last_element = this.listyforpoints[0];
-      		contexto.clearRect(0, 0, canvas.width, canvas.height);
-      		var img = new Image;
-      		img.onload = function(){
-  				contexto.drawImage(img,0,0);
-			};
-			img.src = last_element;
-		};
-		alert(paths);
+    savepath: function(){
+    	neuralnetcalculations(paths);
     },
     };
     
