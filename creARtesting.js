@@ -205,7 +205,7 @@ window.addEventListener('load', function () {
     	if (text == ""){
     		alert("What have you drawn? Type something in the textbox");
     	} else{
-    	    var dataURL = canvas.toDataURL();
+    	    var dataURL = canvaso.toDataURL();
     		createCSV(paths,dataURL,text);
     		document.getElementById('output2').value = "";
     	}
