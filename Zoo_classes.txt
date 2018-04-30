@@ -10,9 +10,9 @@ mountains
 ant
 
 ice cream
-cookies
+cookie
 grass
-oranges
+orange
 birthday cake
 lollipop
 
@@ -22,7 +22,6 @@ bear
 cage
 fence
 tree
-fruit
 apple
 orange
 honey
