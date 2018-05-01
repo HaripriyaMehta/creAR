@@ -13,7 +13,6 @@ for x in range(len(content)):
         allpaths.append(content[x].strip())
 
 print(dicty1)
-print(allpaths)
 
 f = open('/Users/haripriyamehta/Documents/creAR/textfiles/allpaths','w')
 f.write(str(allpaths))
