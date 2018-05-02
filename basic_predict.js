@@ -128,9 +128,9 @@ var draw = function() {
 
   if (model_pen_end === 1) {
     noLoop();
-	var myCanvas = document.getElementById("defaultCanvas0");
-	var data = myCanvas.toDataURL();
-	console.log(data);
+//	var myCanvas = document.getElementById("defaultCanvas0");
+//	var data = myCanvas.toDataURL();
+	//console.log(data);
   } else {
 
     if (model_prev_pen[0] === 1) {
