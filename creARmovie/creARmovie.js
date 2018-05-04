@@ -192,7 +192,6 @@ if (globaltwice == false){
     else{
     	strokeWeight(8).strokeCap(ROUND);
     }
-    strokeWeight(2).strokeCap(ROUND);
     line(touchX, touchY, ptouchX, ptouchY);
   }
   if (pmouseIsPressed && mouseIsPressed){
