@@ -14,19 +14,6 @@ var modeluse;
 var mousey1;
 var mousey2;
 
-var allcont = document.getElementsByClassName('controller');
-for(var i = 0; i < allcont.length; i++){
-   allcont[i].addEventListener('touchstart', function(){this.className = "hover";}, false);
-   allcont[i].addEventListener('touchend', function(){this.className = "";}, false);
-}
-
-var palt = document.getElementsByClassName('palette');
-for(var i = 0; i < palt.length; i++){
-   palt[i].addEventListener('touchstart', function(){this.className = "hover";}, false);
-   palt[i].addEventListener('touchend', function(){this.className = "";}, false);
-}
-
-
 var historyforpts = {
     listyforpoints: [],
     counter: 1,
