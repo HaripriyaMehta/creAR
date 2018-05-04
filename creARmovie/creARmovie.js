@@ -131,8 +131,8 @@ function selectColor(el){
 	  encode_strokes();
 
 	  // copies over the model
-  	  model_x = 213;
-	  model_y = 126;
+  	  model_x = 500;
+	  model_y = 500;
 	  //console.log(model_x);
 	  //console.log(model_y);
 	  model_prev_pen = [0, 1, 0];
@@ -225,7 +225,7 @@ if (globaltwice == true){
 	setup();
   } else {
 
-	var scale = 0.5;
+	var scale = 1;
     if (model_prev_pen[0] === 1) {
 
       // draw line connecting prev point to current point.
