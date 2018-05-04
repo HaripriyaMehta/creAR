@@ -8,13 +8,12 @@
 		<script type="text/javascript" src="creARmovie.js"></script>
 		<script type="text/javascript" src="tensorcalc.js"></script>
 		<script type="text/javascript" src="sketches_data.js"></script>
-		<script type="text/javascript" src="Classjs/helicopter.gen.js"></script>
+		<script type="text/javascript" src="Classjs/cactus.gen.js"></script>
 	    <script type="text/javascript" src="testingcalc.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/p5.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/numjs.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/p5.svg.js"></script>
-		<script language="javascript" type="text/javascript" src="lib/numjs.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
 	</head>
     <body>
@@ -22,25 +21,25 @@
     	</div>
         <div id="container">
            <div id="controllers">
-  			<span class="controller" onclick="undo()" id="undo">Undo</span>  
-  			<span class="controller" onclick="cleary()" id="clear">Clear</span>  
-  			<span class="controller" onclick="beginy()" id="save">Begin Neural Network Mode</span>  
-			<span class="controller" onclick="startyd()" id="save">Start New Drawing</span>  
-			<span class="controller" onclick = "downloadimage()">Download</span>
+  			<span class="controller" onmousedown="undo()" id="undo">Undo</span>  
+  			<span class="controller" onmousedown="cleary()" id="clear">Clear</span>  
+  			<span class="controller" onmousedown="beginy()" id="save">Begin Neural Network Mode</span>  
+			<span class="controller" onmousedown="startyd()" id="save">Start New Drawing</span>  
+			<span class="controller" onmousedown = "downloadimage()">Download</span>
 
 		</div>
               <div footer>
 			<div class="palette-case">
-					<div class="palette black" onclick="selectColor(this)" style="background-color: rgb(0,0,0); border-style: solid;"></div>
-					<div class="palette white" onclick="selectColor(this)" style="background-color: rgb(255,255,255); border-style: solid;"></div>
-					<div class="palette red" onclick="selectColor(this)" style="background-color: rgb(255,0,0); border-style: solid;"></div>
-					<div class="palette orange" onclick="selectColor(this)" style="background-color: rgb(255,165,0); border-style: solid;"></div>
-					<div class="palette yellow" onclick="selectColor(this)" style="background-color: rgb(255,255,0); border-style: solid;"></div>
-					<div class="palette green" onclick="selectColor(this)" style="background-color: rgb(0,255,0); border-style: solid;"></div>
-					<div class="palette lightblue" onclick="selectColor(this)" style="background-color: rgb(135,206,250); border-style: solid;"></div>
-					<div class="palette darkblue" onclick="selectColor(this)" style="background-color: rgb(0,0,255); border-style: solid;"></div>
-					<div class="palette purple" onclick="selectColor(this)" style="background-color: rgb(75,0,130); border-style: solid;"></div>
-					<div class="palette brown" onclick="selectColor(this)" style="background-color: rgb(165, 42, 42); border-style: solid;"></div>
+					<div class="palette black" onmousedown="selectColor(this)" style="background-color: rgb(0,0,0); border-style: solid;"></div>
+					<div class="palette white" onmousedown="selectColor(this)" style="background-color: rgb(255,255,255); border-style: solid;"></div>
+					<div class="palette red" onmousedown="selectColor(this)" style="background-color: rgb(255,0,0); border-style: solid;"></div>
+					<div class="palette orange" onmousedown="selectColor(this)" style="background-color: rgb(255,165,0); border-style: solid;"></div>
+					<div class="palette yellow" onmousedown="selectColor(this)" style="background-color: rgb(255,255,0); border-style: solid;"></div>
+					<div class="palette green" onmousedown="selectColor(this)" style="background-color: rgb(0,255,0); border-style: solid;"></div>
+					<div class="palette lightblue" onmousedown="selectColor(this)" style="background-color: rgb(135,206,250); border-style: solid;"></div>
+					<div class="palette darkblue" onmousedown="selectColor(this)" style="background-color: rgb(0,0,255); border-style: solid;"></div>
+					<div class="palette purple" onmousedown="selectColor(this)" style="background-color: rgb(75,0,130); border-style: solid;"></div>
+					<div class="palette brown" onmousedown="selectColor(this)" style="background-color: rgb(165, 42, 42); border-style: solid;"></div>
 
     		</div>
     	</div>
