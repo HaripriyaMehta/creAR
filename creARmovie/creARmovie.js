@@ -181,13 +181,24 @@ if (globaltwice == false){
   if (ptouchIsDown && touchIsDown){
     drawingContext.strokeStyle = color;
     paths.push([(touchX-8)/1250, (touchY-8)/750]);
+    if (color == "rgb(255, 255, 255)"){
+        strokeWeight(30).strokeCap(ROUND);
+    }
+    else{
+    	strokeWeight(2).strokeCap(ROUND);
+    }
     strokeWeight(2).strokeCap(ROUND);
     line(touchX, touchY, ptouchX, ptouchY);
   }
   if (pmouseIsPressed && mouseIsPressed){
     drawingContext.strokeStyle = color;
     paths.push([(mouseX-8)/1250, (mouseY-8)/750]);
-    strokeWeight(2).strokeCap(ROUND);
+    if (color == "rgb(255, 255, 255)"){
+        strokeWeight(30).strokeCap(ROUND);
+    }
+    else{
+    	strokeWeight(2).strokeCap(ROUND);
+    }
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
   ptouchIsDown = touchIsDown;
