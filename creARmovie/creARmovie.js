@@ -131,10 +131,10 @@ function selectColor(el){
 	  encode_strokes();
 
 	  // copies over the model
-	  model_x = mousey1;
-	  model_y = mousey2;
-	  console.log(model_x);
-	  console.log(model_y);
+	  model_x = 969;
+	  model_y = 294;
+	  //console.log(model_x);
+	  //console.log(model_y);
 	  model_prev_pen = [0, 1, 0];
 
 	}
