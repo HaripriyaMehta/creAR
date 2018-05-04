@@ -131,8 +131,8 @@ function selectColor(el){
 	  encode_strokes();
 
 	  // copies over the model
-	  model_x = 969;
-	  model_y = 294;
+	  model_x = 1096;
+	  model_y = 133;
 	  //console.log(model_x);
 	  //console.log(model_y);
 	  model_prev_pen = [0, 1, 0];
