@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Paint</title>
+		<link rel="stylesheet" type="text/css" href="creARmovie.css">
+	    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="creARmovie.js"></script>
+		<script type="text/javascript" src="tensorcalc.js"></script>
+		<script type="text/javascript" src="sketches_data.js"></script>
+		<script type="text/javascript" src="Classjs/bus.gen.js"></script>
+	    <script type="text/javascript" src="testingcalc.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/p5.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/numjs.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
+		<script type="text/javascript" src="imagecreative.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/p5.svg.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/numjs.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
+	</head>
+    <body>
+    	<div id="toolbar">
+    	</div>
+        <div id="container">
+           <div id="controllers">
+  			<span class="controller" onclick="undo()" id="undo">Undo</span>  
+  			<span class="controller" onclick="cleary()" id="clear">Clear</span>  
+  			<span class="controller" onclick="beginy()" id="save">Begin Neural Network Mode</span>  
+			<span class="controller" onclick="startyd()" id="save">Start New Drawing</span>  
+		</div>
+              <div footer>
+			<div class="palette-case">
+					<div class="palette black" onclick="selectColor(this)" style="background-color: rgb(0,0,0); border-style: solid;"></div>
+					<div class="palette white" onclick="selectColor(this)" style="background-color: rgb(255,255,255); border-style: solid;"></div>
+					<div class="palette red" onclick="selectColor(this)" style="background-color: rgb(255,0,0); border-style: solid;"></div>
+					<div class="palette orange" onclick="selectColor(this)" style="background-color: rgb(255,165,0); border-style: solid;"></div>
+					<div class="palette yellow" onclick="selectColor(this)" style="background-color: rgb(255,255,0); border-style: solid;"></div>
+					<div class="palette green" onclick="selectColor(this)" style="background-color: rgb(0,255,0); border-style: solid;"></div>
+					<div class="palette lightblue" onclick="selectColor(this)" style="background-color: rgb(135,206,250); border-style: solid;"></div>
+					<div class="palette darkblue" onclick="selectColor(this)" style="background-color: rgb(0,0,255); border-style: solid;"></div>
+					<div class="palette purple" onclick="selectColor(this)" style="background-color: rgb(75,0,130); border-style: solid;"></div>
+					<div class="palette brown" onclick="selectColor(this)" style="background-color: rgb(165, 42, 42); border-style: solid;"></div>
+
+    		</div>
+    	</div>
+            </canvas>
+        </div>
+    </body>
+</html>
