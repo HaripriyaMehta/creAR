@@ -16,8 +16,6 @@ function selectColor(el){
     color = window.getComputedStyle(el).backgroundColor;
 }
 
-  
-
 // Keep everything in anonymous function, called on window load.
 
 if(window.addEventListener) {

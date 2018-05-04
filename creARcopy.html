@@ -4,23 +4,32 @@
 		<meta charset="utf-8">
 		<title>Paint</title>
 		<link rel="stylesheet" type="text/css" href="creARstyle.css">
+	    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="creARcopy.js"></script>
 		<script type="text/javascript" src="tensorcalc.js"></script>
+		<script type="text/javascript" src="sketches_data.js"></script>
+		<script type="text/javascript" src="Classjs/ant.gen.js"></script>
+		<script type="text/javascript" src="Classjs/bear.gen.js"></script>
+		<script type="text/javascript" src="Classjs/crab.gen.js"></script>
+		<script type="text/javascript" src="Classjs/dolphin.gen.js"></script>
 	    <script type="text/javascript" src="testingcalc.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/p5.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/numjs.js"></script>
 		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
 		<script type="text/javascript" src="imagecreative.js"></script>
-
+		<script language="javascript" type="text/javascript" src="lib/p5.svg.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/numjs.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
 	</head>
     <body>
     	<div id="toolbar">
     	</div>
         <div id="container">
            <div id="controllers">
-  			<span class="controller" id="undo">Undo</span>  
-  			<span class="controller" id="clear">Clear</span>
-  			<span class="controller" id="save">Begin Neural Network Mode</span>  
+  			<span class="controller" onclick="undo()" id="undo">Undo</span>  
+  			<span class="controller" onclick="cleary()" id="clear">Clear</span>  
+  			<span class="controller" onclick="beginy()" id="save">Begin Neural Network Mode</span>  
+			<span class="controller" onclick="startyd()" id="save">Start New Drawing</span>  
 		</div>
               <div footer>
 			<div class="palette-case">
@@ -39,6 +48,5 @@
     	</div>
             </canvas>
         </div>
-        <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
     </body>
 </html>

@@ -101,7 +101,7 @@ var setup = function() {
 
   // make the canvas and clear the screens
   var a = createCanvas(screen_width, screen_height);
-  frameRate(30);
+ // frameRate(30);
 
   // reinitialize variables before calling p5.js setu
   line_color = color(0, 0, 0);
@@ -130,7 +130,7 @@ var draw = function() {
     noLoop();
 //	var myCanvas = document.getElementById("defaultCanvas0");
 //	var data = myCanvas.toDataURL();
-	//console.log(data);
+//	console.log(data);
   } else {
 
     if (model_prev_pen[0] === 1) {

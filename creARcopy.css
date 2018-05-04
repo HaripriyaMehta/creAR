@@ -1,6 +1,10 @@
 #toolbar {
   border-radius: 12px;
 }
+
+#sketch canvas{
+
+}
 .palette-case {
     width:500px;
     text-align:center;
