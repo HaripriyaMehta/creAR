@@ -77,7 +77,10 @@ var historyforpts = {
 
 
 
-    
+function downloadimage(){
+  // only jpeg is supported by jsPDF
+	saveCanvas(document.getElementById("defaultCanvas0"), 'myCanvas', 'jpg');
+}
     
 function undo(){
     historyforpts.undo();
