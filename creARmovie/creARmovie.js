@@ -130,8 +130,8 @@ function selectColor(el){
 	  encode_strokes();
 
 	  // copies over the model
-	  model_x = 300;
-	  model_y = 420;
+	  model_x = 800;
+	  model_y = 500;
 	  model_prev_pen = [0, 1, 0];
 	}
 }
