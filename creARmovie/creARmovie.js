@@ -131,7 +131,7 @@ function selectColor(el){
 
 	  // copies over the model
 	  model_x = 300;
-	  model_y = 300;
+	  model_y = 420;
 	  model_prev_pen = [0, 1, 0];
 	}
 }
