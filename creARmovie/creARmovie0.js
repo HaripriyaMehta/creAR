@@ -28,7 +28,7 @@ var historyforpts = {
       },
     undo: function(){
           listyforpoints.pop();
-          console.log(listyforpoints);
+          //console.log(listyforpoints);
           globalbool = false;
     	  globaltwice = false;
     	  undobool = true;
