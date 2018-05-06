@@ -50,7 +50,7 @@ var historyforpts = {
 	 	 		document.getElementById("output").innerHTML = "recognizing tiger";
 	 	 	}
 	 	 	else{
-	 	 		document.getElementById("output").innerHTML = "recognizing pyramid";
+	 	 		document.getElementById("output").innerHTML = "recognizing person";
 	 	 	}
 	 		currentCanv  = document.getElementById("defaultCanvas0").toDataURL();
 			globalbool = true;
