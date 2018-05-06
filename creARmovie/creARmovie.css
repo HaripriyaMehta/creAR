@@ -1,3 +1,24 @@
+.wrap {
+    width: 100%;
+}
+
+#output{
+    font-size: 50px;
+
+}
+.floatleft {
+    float:left; 
+    height: 400px;
+}
+
+.floatright {
+float: right;
+    background-color: #ffffff;
+    height: 400px;
+    width: 25%;
+}
+
+
 #toolbar {
   border-radius: 12px;
 }

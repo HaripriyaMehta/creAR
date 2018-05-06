@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>creAR</title>
+		<link rel="stylesheet" type="text/css" href="creARmovie.css">
+	    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="creARmovie1.js"></script>
+		<script type="text/javascript" src="tensorcalc.js"></script>
+		<script type="text/javascript" src="sketches_data1.js"></script>
+		<script type="text/javascript" src="Classjs/castle.gen.js"></script>
+		<script type="text/javascript" src="Classjs/speedboat.gen.js"></script>
+		<script type="text/javascript" src="Classjs/eye.gen.js"></script>
+		<script type="text/javascript" src="Classjs/key.gen.js"></script>
+		<script type="text/javascript" src="Classjs/helicopter.gen.js"></script>
+	    <script type="text/javascript" src="testingcalc.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/p5.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/numjs.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/p5.svg.js"></script>
+		<script language="javascript" type="text/javascript" src="lib/sketch_rnn.js"></script>
+	</head>
+    <body>
+    <div class="wrap">
+    	<div class="floatleft">
+    	<div id="toolbar">
+    	</div>
+        <div id="container">
+           <div id="controllers">
+  			<span class="controller" onmousedown="undo()" id="undo">Undo</span>  
+  			<span class="controller" onmousedown="cleary()" id="clear">Clear</span>  
+  			<span class="controller" onmousedown="beginy()" id="save">Begin Neural Network Mode</span>  
+			<span class="controller" onmousedown="startyd()" id="save">Start New Drawing</span>  
+			<span class="controller" onmousedown = "downloadimage()">Download</span>
+		</div>
+              <div footer>
+			<div class="palette-case">
+					<div class="palette black" onmousedown="selectColor(this)" style="background-color: #FFFFFF; border-style: solid;"></div>
+					<div class="palette white" onmousedown="selectColor(this)" style="background-color: #cccccc; border-style: solid;"></div>
+					<div class="palette red" onmousedown="selectColor(this)" style="background-color: #b3b3b3; border-style: solid;"></div>
+					<div class="palette orange" onmousedown="selectColor(this)" style="background-color: #999999; border-style: solid;"></div>
+					<div class="palette yellow" onmousedown="selectColor(this)" style="background-color: #808080; border-style: solid;"></div>
+					<div class="palette green" onmousedown="selectColor(this)" style="background-color: #666666; border-style: solid;"></div>
+					<div class="palette lightblue" onmousedown="selectColor(this)" style="background-color: #4d4d4d; border-style: solid;"></div>
+					<div class="palette darkblue" onmousedown="selectColor(this)" style="background-color: #333333; border-style: solid;"></div>
+					<div class="palette purple" onmousedown="selectColor(this)" style="background-color: #1a1a1a; border-style: solid;"></div>
+					<div class="palette brown" onmousedown="selectColor(this)" style="background-color: #000000; border-style: solid;"></div>
+
+    		</div>
+    	</div>
+            </canvas>
+        </div>
+        </div>
+        <div class="floatright">
+        <br>
+        <img src="Canvas0.jpg" width="267" height="200">
+    	<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p id="output"></p>
+        </div>
+        <div style="clear: both;"></div>
+	</div>
+    </body>
+</html>
