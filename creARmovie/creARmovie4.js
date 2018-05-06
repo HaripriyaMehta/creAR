@@ -44,7 +44,7 @@ var historyforpts = {
 	 	
 	 },
 	 savepath: function(){
-	 	document.getElementById("output").innerHTML = "recognizing human";
+	 	document.getElementById("output").innerHTML = "";
 	 	currentCanv  = document.getElementById("defaultCanvas0").toDataURL();
 			globalbool = true;
 			globaltwice = true;
