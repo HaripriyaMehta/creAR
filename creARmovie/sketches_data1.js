@@ -1,14 +1,13 @@
 var castle = {
-	"x": 660,
-	"y": 200,
+	"x": 600,
+	"y": 500,
 	"size": 1
 };
 
-var speedboat = {
-	"x": 622,
-	"y": 669,
-	"size": 1
-
+var alarmclock = {
+	"x": 220,
+	"y": 154,
+	"size": .4
 };
 
 var eye = {
@@ -29,5 +28,5 @@ var helicopter = {
 	"size": 0.8
 };
 
-var dicty = {"castle": castle, "speedboat": speedboat, "eye": eye, "key": key, "helicopter":helicopter};
-var listy = ["castle","speedboat","eye","key","helicopter"];
+var dicty = {"castle": castle, "alarmclock": alarmclock, "eye": eye, "key": key, "helicopter":helicopter};
+var listy = ["eye","castle","alarmclock","helicopter"];
