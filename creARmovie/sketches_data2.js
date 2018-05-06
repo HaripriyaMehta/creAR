@@ -11,9 +11,9 @@ var penguin = {
 };
 
 var helicopter = {
-	"x": 300,
+	"x": 600,
 	"y": 100,
-	"size": 0.8
+	"size": 0.5
 };
 
 
